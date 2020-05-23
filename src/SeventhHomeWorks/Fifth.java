@@ -1,5 +1,3 @@
-package SeventhHomeWorks;
-
 import java.util.*;
 
 public class Fifth {

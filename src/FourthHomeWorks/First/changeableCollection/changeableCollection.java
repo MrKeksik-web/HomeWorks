@@ -51,7 +51,7 @@ public class changeableCollection<T> extends AbstractCollection<T> {
 
     @Override
     public int size() {
-        return capacity - size;
+        return size;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class changeableCollection<T> extends AbstractCollection<T> {
         Iterator thatIterator = that.iterator();
 
         while(thisIterator.hasNext()){
-            if(thatIterator.next() != thatIterator.next()){
+            if(thatIterator.next() != thisIterator.next()){
                 return false;
             }
         }
@@ -81,6 +81,10 @@ public class changeableCollection<T> extends AbstractCollection<T> {
         int result = Objects.hash(size);
         result = 31 * result + Arrays.hashCode(arr);
         return result;
+    }
+
+    public Object[] getArr() {
+        return arr;
     }
 
     public static void main(String[] args) {

@@ -2,9 +2,6 @@ package AlgorithmsAndData.SixthHomeWorks;
 
 import AlgorithmsAndData.FirstHomeWorks.Queue;
 
-import java.util.Comparator;
-import java.util.Stack;
-
 public class BinaryTree {
     public BinaryTreeNode head;
     private int count;
@@ -44,27 +41,33 @@ public class BinaryTree {
         }
     }
 
-    public void dfs(){
-        dfSearch(this.getHead());
+    public boolean dfs(int elem){
+        return dfSearch(this.getHead(), elem);
     }
 
-    private void dfSearch(BinaryTreeNode node){
-        System.out.println(node.getValue());
-        if(node.getLeftTree() != null){
-            dfSearch(node.getLeftTree());
+    private boolean dfSearch(BinaryTreeNode node,int elem){
+        if(node.getValue() == elem) {
+            return true;
+        } else {
+            if (node.getLeftTree() != null) {
+                return dfSearch(node.getLeftTree(), elem);
+            }
+            if (node.getRightTree() != null) {
+                return dfSearch(node.getRightTree(), elem);
+            }
         }
-        if(node.getRightTree() != null) {
-            dfSearch(node.getRightTree());
-        }
+        return false;
     }
 
-    public void bfs(){
+    public boolean bfs(int elem){
         Queue<BinaryTreeNode> queue = new Queue<>(count);
         queue.insert(head);
 
         while(!queue.isEmpty()){
             BinaryTreeNode node = queue.get();
-            System.out.println(node.getValue());
+            if(node.getValue() == elem) {
+                return true;
+            }
             if(node.getLeftTree() != null){
                 queue.insert(node.getLeftTree());
             }
@@ -72,6 +75,7 @@ public class BinaryTree {
                 queue.insert(node.getRightTree());
             }
         }
+        return false;
     }
 
     public BinaryTreeNode getHead() {
@@ -94,6 +98,6 @@ public class BinaryTree {
         tree.add(3);
         tree.add(2);
 
-        tree.bfs();
+        System.out.println(tree.dfs(27));
     }
 }

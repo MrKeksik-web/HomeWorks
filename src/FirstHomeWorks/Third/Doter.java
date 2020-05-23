@@ -1,5 +1,3 @@
-package FirstHomeWorks.Third;
-
 public class Doter implements Comparable<Doter>{
     private Integer hoursInGame;
 
